@@ -4,7 +4,7 @@ import altair as alt
 
 session_key='data_source'
 
-track_data = 'Miles Hiked'
+track_data = 'Miles Biked'
 if session_key not in st.session_state:
     data_source = pd.DataFrame({
         "Person": ["Bill","Sally","Bill","Sally","Bill","Sally","Bill","Sally","Bill"],
@@ -14,18 +14,6 @@ if session_key not in st.session_state:
     data_source['Date'] = pd.to_datetime(data_source['Date'])
     st.session_state[session_key] = data_source
 
-hide_menu_style = """
-        <style>
-        .stButton > button {
-            color: blue;
-            background: gray;
-            width: 80px;
-            height: 40px;
-        }
-        </style>
-        """
-#st.markdown(hide_menu_style, unsafe_allow_html=True)
-#filter_date_button = st.button('Filter',on_click=save_session)
 
 def save_session():
    filtered_line_chart = st.session_state[session_key].query(
@@ -61,7 +49,7 @@ with st.sidebar.form("my_form"):
       bytes_data = uploaded_file.getvalue()
       st.write(bytes_data)
 
-     # Can be used wherever a "file-like" object is accepted:
+     
       dataframe = pd.read_csv(uploaded_file)
       st.write(dataframe)
 
@@ -121,7 +109,23 @@ else:
 
 
  
+button_style = """
+        <style>
+        .stButton > button {
+            color: black;
+            width: 100px;
+            height: 50px;
+        }
 
+      #root > div:nth-child(1) > div > div > div > div > section.main.css-1v3fvcr.egzxvld1 > div > div:nth-child(1) > div > div.css-ocqkz7.e1tzin5v0 > div:nth-child(1) > div:nth-child(1) > div > div:nth-child(2) > div > button {
+        background:#28a745; 
+        color:white;
+        
+      }
+
+        </style>
+        """
+st.markdown(button_style, unsafe_allow_html=True)
 
 
 
