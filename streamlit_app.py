@@ -34,7 +34,7 @@ with st.sidebar.form("my_form"):
     input_date = pd.to_datetime(st.date_input("Date input"))
     
 
-    # Every form must have a submit button.
+    # Position Buttons
     submitted = st.form_submit_button("Submit")
     if submitted:
         data_source = st.session_state[session_key]
@@ -54,12 +54,12 @@ with st.sidebar.form("my_form"):
       st.write(dataframe)
 
 def convert_df(df):
-     # IMPORTANT: Cache the conversion to prevent computation on every rerun
+     
      return df.to_csv().encode('utf-8')
 
 csv = convert_df(st.session_state[session_key])      
    
- 
+ #Place buttons side by side
 col1, col2, col3= st.columns(3)
 with col1:
    start_date = st.date_input(
@@ -67,6 +67,7 @@ with col1:
      None)
   
    start_date = pd.to_datetime(start_date)
+   #Creating a Custom Button and Onclick button event
    filter_date_button = st.button('Filter',on_click=save_session)
 
   
@@ -108,7 +109,7 @@ else:
 
 
 
- 
+#Changing Button Styles Color and Size
 button_style = """
         <style>
         .stButton > button {
